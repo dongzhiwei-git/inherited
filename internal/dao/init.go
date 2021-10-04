@@ -11,7 +11,7 @@ func Init() (err error) {
 	// 初始化db
 
 	conn := conf.Get().Mysql
-	DB, err := gorm.Open("mysql", conn)
+	DB, err := gorm.Open("mysql", conn.My.Dns)
 	if err != nil {
 		fmt.Printf("failed to connecte mysql: %v", err)
 		return

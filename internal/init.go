@@ -10,6 +10,8 @@ import (
 func Init() error {
 	if err := dao.Init(); err != nil {
 		return errors.WithStack(err)
+
 	}
+	return nil
 
 }

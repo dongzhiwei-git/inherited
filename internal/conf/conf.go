@@ -20,3 +20,11 @@ var conf Conf
 func Get() *Conf {
 	return &conf
 }
+
+func Init() error {
+	if err := conf.Unmarshal(&config); err != nil {
+		return err
+	}
+
+	return nil
+}
