@@ -1,30 +1,38 @@
 package conf
 
-import "time"
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
+
+	"gopkg.in/yaml.v2"
+)
 
 type Conf struct {
-	Mysql *NewMysql `yaml:"mysql"`
+	Mysql NewMysql `yaml:"mysql" json:"mysql"`
 }
 
 type NewMysql struct {
-	My *MysqlTest `yaml:"my"`
+	Master MysqlTest `yaml:"master"`
+	Slave  MysqlTest `yaml:"slave"`
 }
 
 type MysqlTest struct {
-	Dns       string    `yaml:"dns"`
-	DialTimes time.Time `yaml:"dial_times"`
+	Dsn string `yaml:"dsn" json:"dsn"`
 }
 
 var conf Conf
 
-func Get() *Conf {
-	return &conf
+func Get() Conf {
+	return conf
 }
 
 func Init() error {
-	if err := conf.Unmarshal(&config); err != nil {
-		return err
+	config, err := ioutil.ReadFile("conf/web.yaml")
+	if err != nil {
+		log.Println("yaml parse error")
 	}
-
+	yaml.Unmarshal(config, &conf)
+	fmt.Print("qwe", conf.Mysql.Master.Dsn)
 	return nil
 }

@@ -4,8 +4,10 @@ go 1.17
 
 require (
 	github.com/gin-gonic/gin v1.7.4
+	github.com/go-sql-driver/mysql v1.6.0
 	github.com/jinzhu/gorm v1.9.16
 	github.com/pkg/errors v0.9.1
+	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
@@ -23,5 +25,4 @@ require (
 	github.com/ugorji/go/codec v1.1.7 // indirect
 	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9 // indirect
 	golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd // indirect
-	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
