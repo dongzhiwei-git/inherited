@@ -16,7 +16,6 @@ func main() {
 		log.Println("Init failed." + err.Error())
 		return
 	}
-	fmt.Print("Hello, 世界！")
 
 	var r *gin.Engine
 	r = gin.Default()
