@@ -8,12 +8,14 @@ import (
 type SysUser struct {
 }
 
-func (s *SysUser) CreateSysUser(name, password string) {
+func (s *SysUser) CreateSysUser(name, password string) (err error) {
+
 	var adminUser = models.SysUser{
 		UserName: name,
 		Password: password,
 	}
 
-	dao.Orm.Create(&adminUser)
+	err = dao.Orm.Create(&adminUser).Error
 
+	return
 }

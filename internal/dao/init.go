@@ -3,6 +3,7 @@ package dao
 import (
 	"fmt"
 	"inherited/internal/conf"
+	"inherited/internal/models"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
@@ -16,6 +17,10 @@ func Init() (err error) {
 	conn := conf.Get().Mysql
 	//DB, err := gorm.Open("mysql", "root:beego@tcp(121.36.216.191:3306)/inherited?charset=utf8mb4&parseTime=True&loc=Local")
 	Orm, err = gorm.Open("mysql", conn.Master.Dsn)
+	Orm.AutoMigrate(models.SysUser{})
+	//SysUser := new(services.SysUser)
+	//SysUser.CreateSysUser("root", "234")
+
 	if err != nil {
 		fmt.Printf("failed to connecte mysql: %v", err)
 		return

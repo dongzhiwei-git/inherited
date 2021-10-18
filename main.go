@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	"inherited/internal"
+	"inherited/internal/dao"
+	"inherited/internal/models"
+	"inherited/internal/services"
 	"log"
 	"net/http"
 
@@ -12,10 +15,19 @@ import (
 func main() {
 
 	// 初始化依赖模块
+	fmt.Printf("...........wew.qeqweqw.e.")
 	if err := internal.Init(); err != nil {
 		log.Println("Init failed." + err.Error())
 		return
 	}
+
+	dao.Orm.AutoMigrate(models.SysUser{})
+	SysUser := new(services.SysUser)
+	err := SysUser.CreateSysUser("root", "234")
+	if err != nil {
+		fmt.Printf("err.........")
+	}
+	fmt.Printf("err34.........")
 
 	var r *gin.Engine
 	r = gin.Default()
@@ -26,7 +38,7 @@ func main() {
 	})
 
 	// setup listen
-	err := r.Run(":8000")
+	err = r.Run(":8000")
 	if err != nil {
 		fmt.Printf("run failed: %v\n", err)
 		return
