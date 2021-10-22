@@ -2,10 +2,11 @@ package api
 
 import (
 	"fmt"
-	"inherited/internal/models"
-	"inherited/internal/services"
 	"log"
 	"net/http"
+
+	"inherited/internal/models"
+	"inherited/internal/services"
 
 	"github.com/gin-gonic/gin"
 )
