@@ -12,7 +12,6 @@ import (
 )
 
 func CreateAdminUser(ctx *gin.Context) {
-
 	//Parameter parsing
 	adminUser := models.SysUser{}
 	err := ctx.BindJSON(&adminUser)

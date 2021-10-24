@@ -9,7 +9,6 @@ CREATE TABLE `common_user`
     PRIMARY KEY (`id`),
     UNIQUE KEY `uk_user_id` (`user_id`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 5
   DEFAULT CHARSET = utf8mb4 COMMENT ='普通用户表';
 
 
@@ -75,7 +74,33 @@ CREATE TABLE `need`
     `number`      varchar(30)         NOT NULL DEFAULT '' COMMENT '编号',
     `need_class`  char(4)             NOT NULL DEFAULT '' COMMENT '需求类别',
     `need_detail` varchar(100)        NOT NULL DEFAULT '' COMMENT '需求细节',
-    PRIMARY KEY (`number`)
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uk_number` (`number`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 5
   DEFAULT CHARSET = utf8mb4 COMMENT ='需求表';
+
+CREATE TABLE `store_to_center`
+(
+    `id`           bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    `number`       varchar(30)         NOT NULL DEFAULT '' COMMENT '编号',
+    `user_name`    varchar(30)         NOT NULL DEFAULT '' COMMENT '客户名称',
+    `product_name` varchar(30)         NOT NULL DEFAULT '' COMMENT '产品名称',
+    `need_sum`     bigint(20)          NOT NULL COMMENT '需求数量',
+    `product_type` char(6)             NOT NULL DEFAULT '' COMMENT '需求类型',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uk_number` (`number`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='总仓到分仓表';
+
+CREATE TABLE `center_to_customer`
+(
+    `id`           bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    `number`       varchar(30)         NOT NULL DEFAULT '' COMMENT '编号',
+    `user_name`    varchar(30)         NOT NULL DEFAULT '' COMMENT '客户名称',
+    `product_name` varchar(30)         NOT NULL DEFAULT '' COMMENT '产品名称',
+    `need_sum`     bigint(20)          NOT NULL COMMENT '需求数量',
+    `product_type` char(6)             NOT NULL DEFAULT '' COMMENT '需求类型',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uk_number` (`number`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='分仓到客户';
